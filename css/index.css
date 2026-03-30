@@ -4,7 +4,8 @@
   box-sizing: border-box;
 }
 
-p {
-    font-size: 24px;
-    color: blue;
+.navbar {
+    width: 100%;
+    overflow: hidden;
+    background-color: purple;
 }
