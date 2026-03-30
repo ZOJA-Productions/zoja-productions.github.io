@@ -1,4 +1,4 @@
-# ZOJA Productions
+# Withering: Anemone
 
 Officiell webbplats för spelet Withering: Anemone, skapat av ZOJA Productions
 
