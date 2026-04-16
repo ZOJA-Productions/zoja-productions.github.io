@@ -1,0 +1,178 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: black;
+}
+
+@font-face {
+  font-family: 'FacultyGlyphic';
+  src: url('../fonts/FacultyGlyphic-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'FoglihtenNo07';
+  src: url('../fonts/FoglihtenNo07.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'FoglihtenNo07calt';
+  src: url('../fonts/FoglihtenNo07calt.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Navbar styles */
+
+#navbar {
+  width: 100%;
+  z-index: 1000;
+  position: fixed;
+  overflow: hidden;
+  transition: top 0.4s;
+  background-color: #18052F;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+
+#navbar .link {
+  display: block;
+  color: #A2A3DC;
+  padding: 14px 14px;
+  text-decoration: none;
+  font-family: 'FacultyGlyphic', sans-serif;
+}
+
+#logo {
+  float: left;
+}
+
+#aboutUs {
+  float: right;
+  transition: color 0.3s ease;
+}
+
+#exploreMore {
+  float: right;
+  transition: color 0.3s ease;
+}
+
+#aboutUs:hover {
+  color: rgb(102, 102, 180);
+}
+
+#exploreMore:hover {
+  color: rgb(102, 102, 180);
+}
+
+/* Navbar styles end */
+
+/* Header styles */
+
+#header {
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Header styles end */
+
+/* Main content styles */
+
+#mainContent {
+    padding: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    color: #A2A3DC;
+    text-align: center;
+    flex-direction: row;
+    background-color: #18052F;
+    font-family: 'FacultyGlyphic', sans-serif;
+}
+
+#mttHeader {
+    width: 100%;
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+.teamMember {
+    width: 50%;
+    padding: 20px;
+}
+
+.teamMember h2 {
+    font-size: 28px;
+    font-family: 'FacultyGlyphic', sans-serif;
+}
+
+/* Main content styles end */
+
+/* Footer styles */
+
+#footer {
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+}
+
+#footer h1 {
+  text-align: center;
+  font-family: 'FacultyGlyphic', sans-serif;
+}
+
+#footerDivider {
+  width: 80%;
+  height: 1px;
+  margin: 20px 0;
+
+  background: linear-gradient(
+  to right,
+  transparent 0%,
+  #A2A3DC 50%,
+  transparent 100%
+);
+}
+
+#socialMediaContainer {
+  display: flex;
+  gap: 20px;
+}
+
+.socialMediaIcon {
+  width: 40px;
+  height: 40px;
+  background-color: white; /* placeholder */
+  border-radius: 50%;
+}
+
+/* Footer styles end */
+
+/* Media queries */
+
+@media screen and (max-width: 750px){
+    .teamMember {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 485px) {
+    #navbar {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+}
