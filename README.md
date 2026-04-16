@@ -4,7 +4,7 @@ Official website for Withering: Anemone, developed by ZOJA Productions.
 
 ## Live Site
 The website is hosted via GitHub Pages:
-https://zoja-productions.github.io/
+https://withering.se/
 
 ## Tech
 - HTML
