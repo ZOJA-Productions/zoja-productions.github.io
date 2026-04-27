@@ -192,11 +192,47 @@ body {
 .socialMediaIcon {
   width: 40px;
   height: 40px;
-  background-color: white; /* placeholder */
   border-radius: 50%;
+  background-color: white;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 70%;
 }
 
-/* Footer styles end */
+#iconCredit {
+  margin-top: 30px;
+  color: gray;
+  font-family: 'FacultyGlyphic', sans-serif;
+}
+
+/*// Social media icons //*/
+
+#tiktokIcon {
+  background-image: url('../assets/tik-tok.svg');
+}
+
+#twitterIcon {
+  background-image: url('../assets/x-twitter.svg');
+}
+
+#instagramIcon {
+  background-image: url('../assets/instagram.svg');
+}
+
+#youtubeIcon {
+  background-image: url('../assets/youtube.svg');
+}
+
+#redditIcon {
+  background-image: url('../assets/reddit.svg');
+}
+
+#facebookIcon {
+  background-image: url('../assets/facebook.svg');
+}
+
+/*// Social media icons end //*/
 
 /* Media queries */
 

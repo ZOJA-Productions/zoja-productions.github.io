@@ -13,6 +13,7 @@ window.onscroll = function() {
   prevScrollpos = currentScrollPos;
 }
 
+// Blur effect on site load
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {

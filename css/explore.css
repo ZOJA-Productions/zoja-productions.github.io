@@ -1,0 +1,95 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+@font-face {
+  font-family: 'FacultyGlyphic';
+  src: url('../fonts/FacultyGlyphic-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'FoglihtenNo07';
+  src: url('../fonts/FoglihtenNo07.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'FoglihtenNo07calt';
+  src: url('../fonts/FoglihtenNo07calt.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Navbar styles */
+
+#navbar {
+  width: 100%;
+  top: -210px;
+  z-index: 1000;
+  position: fixed;
+  overflow: hidden;
+  transition: top 0.4s;
+  background-color: #18052F;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+
+#navbar .link {
+  display: block;
+  color: #A2A3DC;
+  padding: 14px 14px;
+  text-decoration: none;
+  font-family: 'FacultyGlyphic', sans-serif;
+}
+
+#logo {
+  float: left;
+}
+
+#aboutUs {
+  float: right;
+  transition: color 0.3s ease;
+}
+
+#exploreMore {
+  float: right;
+  transition: color 0.3s ease;
+}
+
+#aboutUs:hover {
+  color: rgb(102, 102, 180);
+}
+
+#exploreMore:hover {
+  color: rgb(102, 102, 180);
+}
+
+/* Navbar styles end */
+
+#placeholder {
+  height: 150vh;
+}
+
+/* Timeline styels */
+
+#timelineContainer {
+    width: 100%;
+    height: 90vh;
+    padding: 10vh 0 10vh 0;
+    background-color: #210341;
+}
+
+#timelineBackground {
+    width: 100%;
+    height: 100%;
+    background-color: #A2A3DC;
+    opacity: 0.2;
+}
