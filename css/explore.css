@@ -39,7 +39,7 @@ body {
   overflow: hidden;
   transition: top 0.4s;
   background-color: #18052F;
-  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
 }
 
 #navbar .link {
@@ -78,18 +78,258 @@ body {
   height: 150vh;
 }
 
-/* Timeline styels */
+/* Timeline styles */
 
 #timelineContainer {
-    width: 100%;
-    height: 90vh;
-    padding: 10vh 0 10vh 0;
-    background-color: #210341;
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  background-color: #210341;
 }
 
+#timelineLabel {
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  font-weight: lighter;
+  justify-content: center;
+  color: rgb(162, 163, 220);
+  font-family: 'FacultyGlyphic', sans-serif;
+
+}
+
+/* ── Timeline scroll container ── */
+
 #timelineBackground {
-    width: 100%;
-    height: 100%;
-    background-color: #A2A3DC;
-    opacity: 0.2;
+  width: 100%;
+  height: 50vh;
+  background-color: rgba(162, 163, 220, 0.1);
+  overflow-x: auto;
+  overflow-y: hidden;
+  cursor: grab;
+  user-select: none;
+  scrollbar-width: none;
+  /* Fade the background colour into the container colour (#210341) on both sides */
+  -webkit-mask-image: linear-gradient(to bottom,
+      transparent 0%,
+      black 15%,
+      black 85%,
+      transparent 100%);
+  mask-image: linear-gradient(to bottom,
+      transparent 0%,
+      black 15%,
+      black 85%,
+      transparent 100%);
+}
+
+#timelineBackground:active {
+  cursor: grabbing;
+}
+
+#timelineBackground::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Inner track ── */
+
+#timelineTrack {
+  display: flex;
+  /* Align items to centre so the tick sits on the line */
+  align-items: center;
+  height: 100%;
+  padding: 0 50vw;
+  position: relative;
+  min-width: max-content;
+}
+
+/* ── Line segments ── */
+
+.timeline-line-segment {
+  position: absolute;
+  top: 50%;
+  height: 1px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* Past segment */
+#timelineLinePast {
+  background: linear-gradient(to right,
+      transparent 0px,
+      rgba(162, 163, 220, 0.45) 80px,
+      rgba(162, 163, 220, 0.45) calc(100% - 60px),
+      transparent 100%);
+}
+
+/* Future segment: brighter and slightly thicker */
+#timelineLineFuture {
+  height: 2px;
+  top: calc(50% - 0.5px);
+  background: linear-gradient(to right,
+      transparent 0%,
+      rgba(162, 163, 220, 0.85) 60px,
+      rgba(162, 163, 220, 0.85) calc(100% - 80px),
+      transparent 100%);
+}
+
+/* ── Markers ── */
+
+.timeline-marker {
+  /* Zero width: offsetLeft == tick centre */
+  width: 0;
+  flex-shrink: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  /* tick is vertically centred on the line */
+  justify-content: center;
+  overflow: visible;
+}
+
+.timeline-marker.clickable {
+  cursor: pointer;
+}
+
+/* Regular tick — centred on the line */
+.timeline-marker .tick {
+  width: 1px;
+  height: 12px;
+  background-color: rgba(162, 163, 220, 0.55);
+  transition: height 0.2s ease, background-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+/* Tall tick */
+.timeline-marker.tall .tick {
+  height: 28px;
+  background-color: rgba(162, 163, 220, 0.9);
+}
+
+/* Label: positioned absolutely below the tick so it doesn't push the tick off-centre */
+.timeline-marker .marker-label {
+  position: absolute;
+  top: calc(50% + 12px);
+  /* just below the line */
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'FoglihtenNo07', serif;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  color: rgba(162, 163, 220, 0.75);
+  white-space: nowrap;
+  text-align: center;
+  transition: color 0.2s ease, top 0.2s ease;
+}
+
+.timeline-marker.tall .marker-label {
+  top: calc(50% + 18px);
+  /* clear the taller tick */
+  font-size: 1.4rem;
+  color: rgba(162, 163, 220, 0.9);
+}
+
+/* Hover */
+.timeline-marker:hover .tick {
+  background-color: rgba(162, 163, 220, 1);
+}
+
+.timeline-marker:not(.tall):hover .tick {
+  height: 20px;
+}
+
+/* Nudge label down slightly on hover so it clears the grown tick */
+.timeline-marker:not(.tall):hover .marker-label {
+  top: calc(50% + 14px);
+}
+
+.timeline-marker.clickable:hover .marker-label {
+  color: rgba(162, 163, 220, 1);
+}
+
+/* ── Bubble ── */
+
+.timeline-bubble {
+  position: absolute;
+  /* Anchor above the line (50% up from marker centre) */
+  bottom: calc(50% + 28px);
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  width: 240px;
+  background: #18052F;
+  border: 1px solid rgba(162, 163, 220, 0.35);
+  border-radius: 6px;
+  padding: 16px 16px 14px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.55);
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.timeline-bubble.open {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Arrow pointing down */
+.bubble-arrow {
+  position: absolute;
+  bottom: -7px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 12px;
+  height: 12px;
+  background: #18052F;
+  border-right: 1px solid rgba(162, 163, 220, 0.35);
+  border-bottom: 1px solid rgba(162, 163, 220, 0.35);
+}
+
+/* Image */
+.bubble-image {
+  display: block;
+  width: 100%;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  object-fit: cover;
+  max-height: 130px;
+}
+
+/* Title */
+.bubble-title {
+  font-family: 'FoglihtenNo07', serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.07em;
+  color: rgba(162, 163, 220, 1);
+  margin-bottom: 7px;
+  line-height: 1.3;
+}
+
+/* Body text */
+.bubble-text {
+  font-family: 'FacultyGlyphic', sans-serif;
+  font-size: 0.78rem;
+  line-height: 1.6;
+  color: rgba(162, 163, 220, 0.7);
+}
+
+/* Close button */
+.bubble-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: rgba(162, 163, 220, 0.5);
+  font-size: 0.75rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 2px 4px;
+  transition: color 0.15s ease;
+}
+
+.bubble-close:hover {
+  color: rgba(162, 163, 220, 1);
 }
