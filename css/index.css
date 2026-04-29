@@ -164,7 +164,7 @@ body {
 }
 
 #storeLink{
-  z-index: 1;
+  z-index: 100;
   margin-top: 60px;
   text-decoration: none;
   background-color: #210341;
@@ -249,11 +249,37 @@ body {
   background-color: #18052F;
 }
 
+#exploreRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0px 11px 8px -12px rgba(0, 0, 0, 1), inset 0px -11px 8px -12px rgba(0, 0, 0, 1);
+  background: linear-gradient(
+    90deg, 
+    #210341 15%, 
+    red 50%, 
+    #210341 85%);
+}
+
+#exploreButton {
+  padding: 30px;
+  text-decoration: none;
+  text-align: center;
+  color: #A2A3DC;
+}
+
+#exploreButton h1 {
+  font-size: 30px;
+  transition: color 0.3s ease;
+  font-family: 'FacultyGlyphic', sans-serif;
+}
+
 /* Main content styles end */
 
 /* Footer styles */
 
 #footer {
+  z-index: 0;
   background-color: black;
   color: white;
   display: flex;

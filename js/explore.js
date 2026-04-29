@@ -13,6 +13,48 @@ window.onscroll = function () {
     prevScrollpos = currentScrollPos;
 };
 
+// ── Blur effect on site load ──────────────────────────────────────────────
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+
+      const elements = entry.target.querySelectorAll(".reveal, .reveal-ui");
+
+      // Special treatment for header (hero section)
+      const baseDelay = entry.target.id === "header" ? 300 : 0;
+
+      elements.forEach((el, index) => {
+        const isUI = el.classList.contains("reveal-ui");
+        const isTextLike = el.classList.contains("reveal-as-text"); // paragraph-like delay for storeLink header
+
+        let extraDelay = 0;
+
+        if (isTextLike) {
+          extraDelay = 40;
+        }
+
+        if (isUI && !isTextLike) {
+          extraDelay = 80;
+        }
+
+        setTimeout(() => {
+          el.classList.add("show");
+        }, baseDelay + index * 120 + extraDelay);
+      });
+
+      observer.unobserve(entry.target); // animate only once
+    }
+  });
+}, {
+  threshold: 0.25,
+  rootMargin: "0px 0px -50px 0px"
+});
+
+// Observe sections instead of individual text elements
+document.querySelectorAll("#timelineContainer, #footer").forEach(section => {
+  observer.observe(section);
+});
+
 
 // ── Timeline data ─────────────────────────────────────────────────────────
 //
@@ -173,14 +215,11 @@ function positionLines(futureMarkerEl) {
     // Markers have width:0, so offsetLeft is exactly the tick centre.
     const splitX = futureMarkerEl.offsetLeft;
 
-    // Blend zone width (px each side of the split point)
-    const blend = 60;
-
     linePast.style.left  = "0";
-    linePast.style.width = (splitX + blend) + "px";
+    linePast.style.width = splitX + "px";
 
-    lineFuture.style.left  = (splitX - blend) + "px";
-    lineFuture.style.width = (trackW - splitX + blend) + "px";
+    lineFuture.style.left  = splitX + "px";
+    lineFuture.style.width = (trackW - splitX) + "px";
 }
 
 

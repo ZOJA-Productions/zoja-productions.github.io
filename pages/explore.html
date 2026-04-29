@@ -28,12 +28,31 @@
 
     <!-- Timeline -->
     <div id="timelineContainer">
-        <h1 id="timelineLabel">
-            <span> Drag </span>  the timeline to navigate and <span> click </span>  on the labels to learn more!
-        </h1>
-        <div id="timelineBackground">
+        <div id="timelineLabelContainer" class="reveal">
+            <h1 id="timelineLabel"><span> Drag </span> the timeline to navigate and <span id="clickSpan"> click </span> <span id="pressSpan"> press </span> on the labels to learn more!</h1>
+        </div>
+        <div id="timelineBackground" class="reveal-ui"></div>
         </div>
     </div>
+    <!-- Timeline End -->
+
+    <!-- Footer -->
+    <div id="footer">
+        <h1 class="reveal">FIND US HERE</h1>
+        <div id="footerDivider" class="reveal-ui"></div>
+        <div id="socialMediaContainer" class="reveal-ui">
+            <a href="#" class="socialMediaIcon" id="tiktokIcon"></a>
+            <a href="#" class="socialMediaIcon" id="twitterIcon"></a>
+            <a href="#" class="socialMediaIcon" id="instagramIcon"></a>
+            <a href="#" class="socialMediaIcon" id="youtubeIcon"></a>
+            <a href="#" class="socialMediaIcon" id="redditIcon"></a>
+            <a href="#" class="socialMediaIcon" id="facebookIcon"></a>
+        </div>
+        <p id="iconCredit" class="reveal">
+            Icons by Nucleo · <a href="https://nucleoapp.com/copyright-notice" target="_blank">License</a>
+        </p>
+    </div>
+    <!-- Footer End -->
 
     <script src ="../js/explore.js"></script>
 </body>
